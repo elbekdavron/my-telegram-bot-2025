@@ -32,6 +32,15 @@ class Bot:
             chat_id: The id of the chat to send the photo to
             photo: The path to the photo to send
         """
+        url = self.base_url + "sendPhoto"
+        params = {
+            "chat_id": chat_id
+            }
+        files = {
+            "photo": open(photo, "rb")
+            }
+        response = requests.post(url, params=params, files=files)
+        return response.json()
         
     def send_document(self, chat_id, document):
         """
@@ -41,6 +50,15 @@ class Bot:
             chat_id: The id of the chat to send the document to
             document: The path to the document to send
         """
+        url = self.base_url + "sendDocument"
+        params = {
+            "chat_id": chat_id
+            }
+        files = {
+            "document": open(document, "rb")
+            }
+        response = requests.post(url, params=params, files=files)
+        return response.json()
 
     def send_audio(self, chat_id, audio):
         """
@@ -50,6 +68,15 @@ class Bot:
             chat_id: The id of the chat to send the audio to
             audio: The path to the audio to send
         """
+        url = self.base_url + "sendAudio"
+        params = {
+            "chat_id": chat_id
+            }
+        files = {
+            "audio": open(audio, "rb")
+            }
+        response = requests.post(url, params=params, files=files)
+        return response.json()
 
     def send_video(self, chat_id, video):
         """
@@ -59,6 +86,16 @@ class Bot:
             chat_id: The id of the chat to send the video to
             video: The path to the video to send
         """
+        url = self.base_url + "sendVideo"
+        params = {
+            "chat_id": chat_id
+            }
+        files = {
+            "video": open(video, "rb")
+            }
+        response = requests.post(url, params=params, files=files)
+        return response.json()
+
 
     def send_voice(self, chat_id, voice):
         """
@@ -68,6 +105,11 @@ class Bot:
             chat_id: The id of the chat to send the voice to
             voice: The path to the voice to send
         """
+        url = self.base_url + "sendVoice"
+        params = {"chat_id": chat_id}
+        files = {"voice": open(voice, "rb")}
+        response = requests.post(url, params=params, files=files)
+        return response.json()
 
     def get_updates(self):
         """
@@ -75,5 +117,3 @@ class Bot:
         """
         response = requests.get(self.base_url + "getUpdates")
         return response.json()
-
-    # Add more methods here
